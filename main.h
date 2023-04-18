@@ -1,3 +1,4 @@
+
 #ifndef MAIN_H
 #define MAIN_H
 
@@ -10,6 +11,7 @@
 
 char **split_args(char *input_str);
 char *allocate_string(char *c);
-int execute(char *c);
+int execute(char *c, char **envp);
+int is_builtin(char *prog);
 
 #endif

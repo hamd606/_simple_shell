@@ -4,7 +4,7 @@
   * main - code entry point
   * Return: 0 hopefully
   */
-int main(void)
+int main(int argc, char *argv[], char *envp[])
 {
 	char *buffer;
 	size_t bufsize = 512;
@@ -41,7 +41,7 @@ int main(void)
 		}
 		else /*child process code*/
 		{
-			execute(new_buffer);
+			execute(new_buffer, envp);
 		}
 	}
 	return (0);

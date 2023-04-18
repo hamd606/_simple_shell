@@ -5,13 +5,14 @@
   * @c: pointer to string to be executed
   * Return: whatever execve returned
   */
-int execute(char *c)
+int execute(char *c, char **envp)
 {
 
 	int exec_value;
 	char **args_list = split_args(c);
-	char *envp[] = {NULL};
-
+	
+	//check for built-ins 
+	is_builtin(args_list[0]); //this is just a proof of concept function isn't implimented yet
 
 	exec_value = execve((args_list[0]), args_list, envp);
 	if (exec_value == -1)
