@@ -1,17 +1,34 @@
 #include "main.h"
-
-int is_builtin(char *prog)
+/**
+  * is_builtin -  checks for builin commands like env and exit
+  * @prog: command to be executed
+  * @envp: envp passed from the OS
+  * @parent_pid: main process PID
+  * Return: 1 if command is builtin 0 otherwise
+  */
+int is_builtin(char *prog, char **envp, pid_t parent_pid)
 {
-    //impliment builtins like env and pwd
-    //this function isn't finished yet
-    char *pwd = "pwd";
+	char *exit_call = "exit";
+	char *env = "env";
 
-    if (strcmp(pwd, prog) == 0)
+	if (strcmp(prog, exit_call) == 0)
 	{
-		exit(-1);
+		kill(parent_pid, SIGINT);
+		return (1);
 	}
 
+	else if (strcmp(prog, env) == 0)
+	{
+		while (envp)
+		{
+			printf("%s\n", *envp);
+			envp++;
+		}
 
-    else
-        return (0);
+		return (1);
+
+	}
+
+	else
+		return (0);
 }

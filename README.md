@@ -18,11 +18,11 @@ Done
 ### ☐ Task 0.3 : (PATH)
 Not yet implemented
 
-### ☐ Task 0.4 : (exit Builin)
-A rough working version || needs to be finished and optimized
+### ☑ Task 0.4 : (exit Builin)
+Done
 
-### ☐ Task 1.0 : (env Builtin)
-Conception stage
+### ☑ Task 1.0 : (env Builtin)
+Done
 ## Collaborators
 
  - [CHIKHAOUI Mohamed](https://https://github.com/hamd606)

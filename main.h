@@ -11,7 +11,9 @@
 
 char **split_args(char *input_str);
 char *allocate_string(char *c);
-int execute(char *c, char **envp);
-int is_builtin(char *prog);
+int execute(char *c, char **envp, pid_t parent_pid);
+int is_builtin(char *prog, char **envp, pid_t parent_pid);
+
+#define UNUSED(x) (void)(x)
 
 #endif

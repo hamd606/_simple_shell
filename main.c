@@ -2,16 +2,21 @@
 
 /**
   * main - code entry point
+  * @argc: number of args to main func
+  * @argv: list of args to main function
+  * @envp: environment variables passed to main
+  *		envp pass is not part of POSIX can be replaced by extern environ var
   * Return: 0 hopefully
   */
-int main(int argc, char *argv[], char *envp[])
+int main(int argc, __attribute__((unused))char *argv[], char *envp[])
 {
-	char *buffer;
+	(void)argc;
+	pid_t parent = getpid();
+	char *buffer = malloc(sizeif(char *));
 	size_t bufsize = 512;
 	pid_t pid;
 	char *new_buffer = malloc(sizeof(char *));
 
-	buffer = (char *)malloc(bufsize * sizeof(char));
 	if (buffer == NULL)
 	{
 		perror("malloc() failed : Unable to allocate buffer\n");
@@ -28,7 +33,6 @@ int main(int argc, char *argv[], char *envp[])
 		}
 		new_buffer = allocate_string(buffer);
 		pid = fork();
-
 		if (pid == -1) /*checking if fork failed*/
 		{
 			printf("fork failed\n");
@@ -41,7 +45,7 @@ int main(int argc, char *argv[], char *envp[])
 		}
 		else /*child process code*/
 		{
-			execute(new_buffer, envp);
+			execute(new_buffer, envp, parent);
 		}
 	}
 	return (0);
