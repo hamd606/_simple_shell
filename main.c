@@ -10,13 +10,13 @@
   */
 int main(int argc, __attribute__((unused))char *argv[], char *envp[])
 {
-	(void)argc;
-	pid_t parent = getpid();
-	char *buffer = malloc(sizeif(char *));
+	pid_t parent, pid;
+	char *buffer = malloc(sizeof(char *));
 	size_t bufsize = 512;
-	pid_t pid;
 	char *new_buffer = malloc(sizeof(char *));
 
+	(void)argc;
+	parent = getpid();
 	if (buffer == NULL)
 	{
 		perror("malloc() failed : Unable to allocate buffer\n");
@@ -24,7 +24,7 @@ int main(int argc, __attribute__((unused))char *argv[], char *envp[])
 	}
 	while (1)
 	{
-		printf("#cisfun$ ");
+		printf("#USER_VAR$/# ");
 		if (getline(&buffer, &bufsize, stdin) == -1)
 		{
 			free(buffer);
