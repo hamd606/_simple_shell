@@ -1,0 +1,3 @@
+realocate fork() from main to execute function
+add a function to chach if command exists in paths specified
+re-organize execute function (its getting complicated)

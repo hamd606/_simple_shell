@@ -24,7 +24,7 @@ int execute(char *c, char **envp, pid_t parent_pid)
 
 	exec_value = execve((args_list[0]), args_list, envp);
 	if (exec_value == -1)
-		printf("./shell : No such file or directory\n");
+		printf("ERROR : File exists but execuve(-1)\n");
 
 	}
 

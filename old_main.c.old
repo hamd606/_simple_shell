@@ -1,0 +1,39 @@
+#include "main.h"
+
+/**
+  * main - code entry point
+  * @argc: number of args to main func
+  * @argv: list of args to main function
+  * @envp: environment variables passed to main
+  *		envp pass is not part of POSIX can be replaced by extern environ var
+  * Return: 0 hopefully
+  */
+int main(int argc, __attribute__((unused))char *argv[], char *envp[])
+{
+	pid_t parent, pid;
+	char *new_buffer;
+	(void)argc;
+
+	parent = getpid();
+
+	while (1)
+	{
+		new_buffer = read_line();
+		pid = fork();
+		if (pid == -1) /*checking if fork failed*/
+		{
+			printf("fork failed\n");
+		}
+		else if (pid > 0) /*parent process code*/
+		{
+			int status;
+
+			waitpid(pid, &status, 0); /*waits until child process returns*/
+		}
+		else /*child process code*/
+		{
+			execute(new_buffer, envp, parent);
+		}
+	}
+	return (0);
+}
