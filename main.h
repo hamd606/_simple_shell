@@ -14,6 +14,7 @@ char *allocate_string(char *c);
 int execute(char *c, char **envp, pid_t parent_pid);
 int is_builtin(char *prog, char **envp, pid_t parent_pid);
 char *read_line();
+char *read_read_line();
 
 #define UNUSED(x) (void)(x)
 

@@ -15,11 +15,16 @@ int main(int argc, __attribute__((unused))char *argv[], char *envp[])
         (void)argc;
 
         parent = getpid();
+	int is_exit, is_env, is_found;
 
         while (1)
         {
-                new_buffer = read_line();
-                if (access(new_buffer, F_OK) == 0 || strcmp(new_buffer, "exit") == 0)
+                new_buffer = read_line(); //previously read_line()
+                is_exit = !(strcmp(new_buffer, "exit"));
+		is_env = !(strcmp(new_buffer, "env"));
+		is_found = !(access(new_buffer, F_OK));
+
+		if (is_found || is_exit || is_env) //remove the one
                 {    
                     pid = fork();
                     if (pid == -1) /*checking if fork failed*/
@@ -35,6 +40,7 @@ int main(int argc, __attribute__((unused))char *argv[], char *envp[])
                     }
                     else /*child process code*/
                     {
+			    //printf("calling exec\n");
                             execute(new_buffer, envp, parent);
                     }
                 }
